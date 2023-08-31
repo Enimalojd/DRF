@@ -1,0 +1,5 @@
+NAME_DB = 'shop_db'
+NAME_USER = 'user_1'
+PASSWORD_DB = '123456'
+HOST_DB = 'localhost'
+PORT_DB = ''

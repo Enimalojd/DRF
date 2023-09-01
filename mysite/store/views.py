@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from store.models import Service
 from store.serializers import ServiceSerializer, UserSerializer
 
-
 '''------------------api------------------'''
 
 
@@ -30,4 +29,9 @@ class ServiceViewSet(ModelViewSet):
 
 
 def auth(request):
-    return render(request, 'oauth.html')
+    return render(request, 'store/oauth.html')
+
+
+def profile_view(request):
+    context = {'css': 'css/style.css'}
+    return render(request, 'store/profile.html', context)

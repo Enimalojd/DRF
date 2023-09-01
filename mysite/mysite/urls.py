@@ -14,9 +14,10 @@ router.register(r'services', ServiceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path('', include('social_django.urls', namespace='social')),
-    re_path('auth', auth)
+    re_path('auth', auth),
+    path('store/', include('store.urls')),
+    path('accounts', include("django.contrib.auth.urls")),
 ]
 
 urlpatterns += router.urls

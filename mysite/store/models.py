@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -8,3 +9,7 @@ class Service(models.Model):
 
     def __str__(self):
         return f'Id {self.id}: {self.title}'
+
+
+
+

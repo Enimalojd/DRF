@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
+from django.views.generic import CreateView, FormView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet
@@ -37,3 +39,12 @@ def auth(request):
 def profile_view(request):
     context = {'css': 'css/style.css'}
     return render(request, 'store/profile.html', context)
+
+
+class RegisterView(FormView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

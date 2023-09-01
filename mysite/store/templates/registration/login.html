@@ -8,7 +8,7 @@
     <title>Login</title>
 </head>
 <body>
-        </div>
+    <div>
         <div class="text-center mt-4 name">
         </div>
         <form class="p-3 mt-3" method="post">
@@ -24,8 +24,7 @@
             {{ form.errors }}
             <button class="btn btn-info btn-sm mt-3 mb-4">Login</button>
         </form>
-        <div class="text-center fs-6">
-
+        <a href="{% url 'store:register' %}" class="btn btn-info btn-sm mt-3 mb-4">Registration</a>
     </div>
 </body>
 </html>

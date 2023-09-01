@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -32,6 +33,7 @@ def auth(request):
     return render(request, 'store/oauth.html')
 
 
+@login_required
 def profile_view(request):
     context = {'css': 'css/style.css'}
     return render(request, 'store/profile.html', context)

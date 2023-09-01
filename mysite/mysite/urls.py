@@ -17,7 +17,7 @@ urlpatterns = [
     re_path('', include('social_django.urls', namespace='social')),
     re_path('auth', auth),
     path('store/', include('store.urls')),
-    path('accounts', include("django.contrib.auth.urls")),
+    path('accounts/', include("django.contrib.auth.urls")),
 ]
 
 urlpatterns += router.urls

@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -31,8 +32,6 @@ class ServiceViewSet(ModelViewSet):
     ordering_fields = ['title', 'price']
 
 
-def auth(request):
-    return render(request, 'store/oauth.html')
 
 
 @login_required
@@ -44,7 +43,7 @@ def profile_view(request):
 class RegisterView(FormView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
-
+    success_url = reverse_lazy('store:profile')
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)

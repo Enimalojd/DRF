@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, FormView
+from django.views.generic import FormView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.mixins import UpdateModelMixin
@@ -10,6 +10,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework import permissions
 from django.contrib.auth.models import User
 from store.models import Service, UserServiceRelation
+from store.permissions import IsOwnerOrStaffOrReadOnly
 from store.serializers import ServiceSerializer, UserSerializer, UserServiceRelationSerializer
 
 '''------------------api------------------'''
@@ -26,11 +27,15 @@ class ServiceViewSet(ModelViewSet):
     '''Конечная точка API, которая позволяет просматривать или редактировать услуги'''
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsOwnerOrStaffOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['price']
     search_fields = ['title', 'price']
     ordering_fields = ['title', 'price']
+
+    def perform_create(self, serializer):
+        serializer.validated_data['owner'] = self.request.user
+        serializer.save()
 
 
 class UserServiceRelationView(UpdateModelMixin, GenericViewSet):

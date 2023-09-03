@@ -47,3 +47,8 @@ class RegisterView(FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+def mainpage_view(request):
+    context = {'css': 'css/mainpage.css'}
+    return render(request, 'store/mainpage.html', context)

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+    <title>Store</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"></script>
+
+</head>
+<body>
+<!-- navbar goes here -->
+<header class="bg-gray-100">
+    <nav>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-4">
+                    <!-- logo -->
+                    <div class="hidden md:flex items-center space-x-1"><a href="{% url 'mainpage' %}"
+                                                                          class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</a>
+                    </div>
+                </div> <!-- secondary nav -->
+                <div class="hidden md:flex items-center space-x-1"><a href="{% url 'store:profile' %}"
+                                                                      class="py-5 px-3">Login</a>
+                    <a href="{% url 'store:register' %}"
+                       class="py-2 px-3 bg-yellow-400 text-white hover:bg-yellow-300 text-sm hover:text-yellow-800 rounded transition duration-300">Signup</a>
+                </div> <!-- mobile button goes here -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button focus:outline-none">
+                        <i class='bx bx-menu text-3xl mt-1'></i></button>
+                </div>
+            </div>
+        </div> <!-- mobile menu -->
+        <div class="mobile-menu hidden md:hidden"><a href="{% url 'mainpage' %}"
+                                                     class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a></div>
+
+    </nav>
+</header>
+<main>
+    <div class="block">
+        <div class="container mx-auto py-5 flex align-middle justify-center">
+            <div class="image">
+                <img
+                        src="https://avatars.mds.yandex.net/get-images-cbir/1936190/PtH33dTuwtO-V_qVaxIWSA521/ocr"
+                />
+            </div>
+        </div>
+    </div>
+</main>
+</div>
+</body>
+</html>

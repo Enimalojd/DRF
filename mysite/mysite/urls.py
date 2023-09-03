@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
 
-from store.views import ServiceViewSet, UserViewSet
+from store.views import ServiceViewSet, UserViewSet, mainpage_view
 
 router = routers.DefaultRouter()
 
@@ -14,6 +14,7 @@ urlpatterns = [
     re_path('', include('social_django.urls', namespace='social')),
     path('store/', include('store.urls', namespace='store')),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('', mainpage_view, name='mainpage')
 ]
 
 urlpatterns += router.urls

@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Service
+from django.contrib.admin import ModelAdmin
+
+from .models import Service, UserServiceRelation
 
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -10,3 +12,8 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Service, ServiceAdmin)
+
+
+@admin.register(UserServiceRelation)
+class UserServiceRelationAdmin(ModelAdmin):
+    pass

@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from store.models import Service
+from store.models import Service, UserServiceRelation
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,3 +16,11 @@ class ServiceSerializer(ModelSerializer):
     class Meta:
         model = Service
         fields = '__all__'
+
+
+class UserServiceRelationSerializer(ModelSerializer):
+    '''Сериализация оценок'''
+
+    class Meta:
+        model = UserServiceRelation
+        fields = ('service', 'like', 'in_bookmark', 'rate')

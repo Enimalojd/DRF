@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django_filters.rest_framework import DjangoFilterBackend
@@ -9,7 +9,7 @@ from rest_framework.mixins import UpdateModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework import permissions
 from django.contrib.auth.models import User
-from store.models import Service, UserServiceRelation
+from store.models import Service, UserServiceRelation, Category
 from store.permissions import IsOwnerOrStaffOrReadOnly
 from store.serializers import ServiceSerializer, UserSerializer, UserServiceRelationSerializer
 
@@ -70,3 +70,23 @@ class RegisterView(FormView):
 def mainpage_view(request):
     context = {'css': 'css/mainpage.css'}
     return render(request, 'store/mainpage.html', context)
+
+
+def service_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    services = Service.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        services = services.filter(category=category)
+    return render(request, 'store/product_list.html',{
+        'category': category,
+        'categories': categories,
+        'services': services
+    })
+
+
+def service_detail(request, id, slug):
+    service = get_object_or_404(Service, id=id, slug=slug, available=True)
+
+    return render(request, 'store/detail.html', {'service': service})

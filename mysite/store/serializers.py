@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from store.models import Service, UserServiceRelation
+from store.models import Service, UserServiceRelation, Category
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -24,3 +24,11 @@ class UserServiceRelationSerializer(ModelSerializer):
     class Meta:
         model = UserServiceRelation
         fields = ('service', 'like', 'in_bookmark', 'rate')
+
+
+class CategoriesSerializer(ModelSerializer):
+    '''Сериализация категорий товаров'''
+
+    class Meta:
+        model = Category
+        fields = '__all__'

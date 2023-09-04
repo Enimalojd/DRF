@@ -7,9 +7,10 @@ from .models import Service, UserServiceRelation, Category
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'slug', 'price', 'available', 'created', 'updated']
-    list_display_links = ('id', 'title')
-    search_fields = ('id', 'title')
+    list_display_links = ['id', 'title']
+    search_fields = ['id', 'title']
     list_filter = ['available', 'created', 'updated', 'price']
+    list_editable = ['price', 'available']
     prepopulated_fields = {'slug': ('title',)}
 
 

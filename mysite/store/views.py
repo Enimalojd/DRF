@@ -79,7 +79,7 @@ def service_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         services = services.filter(category=category)
-    return render(request, 'store/product_list.html',{
+    return render(request, 'store/service/list.html',{
         'category': category,
         'categories': categories,
         'services': services
@@ -89,4 +89,4 @@ def service_list(request, category_slug=None):
 def service_detail(request, id, slug):
     service = get_object_or_404(Service, id=id, slug=slug, available=True)
 
-    return render(request, 'store/detail.html', {'service': service})
+    return render(request, 'store/service/detail.html', {'service': service})

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}My store{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<div id="header">
+    <a href="/store/" class="logo">My store</a>
+</div>
+<div id="subheader">
+    <div class="cart">
+        <div class="hidden md:flex items-center space-x-1"><a href="{% url 'store:profile' %}"
+                                                              class="py-5 px-3">Login</a>
+            <a href="{% url 'store:register' %}"
+               class="py-2 px-3 bg-yellow-400 text-white hover:bg-yellow-300 text-sm hover:text-yellow-800 rounded transition duration-300">Signup</a>
+        </div>
+    </div>
+    <div class="hidden md:flex items-center space-x-1"><a href="{% url 'mainpage' %}"
+                                                          class="py-5 px-3 text-gray-700 hover:text-gray-900">На
+        главную</a>
+    </div>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

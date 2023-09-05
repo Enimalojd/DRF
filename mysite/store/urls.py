@@ -6,7 +6,7 @@ app_name = 'store'
 
 urlpatterns = [
     path('', service_list, name='service_list'),
-    path('<slug:category_slug>/', service_list, name='service_list_category'),
+    path('<slug:category_slug>/', service_list, name='service_list_by_category'),
     path('<int:id>/<slug:slug>/', service_detail, name='service_detail'),
     path('profile', profile_view, name='profile'),
     path('register', RegisterView.as_view(), name="register"),

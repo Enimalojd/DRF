@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 from store.views import ServiceViewSet, UserViewSet, mainpage_view
 
@@ -17,4 +19,9 @@ urlpatterns = [
     path('', mainpage_view, name='mainpage')
 ]
 
+
 urlpatterns += router.urls
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+

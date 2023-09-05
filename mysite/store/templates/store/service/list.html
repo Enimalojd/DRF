@@ -1,0 +1,37 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Услуги{% endif %}
+{% endblock %}
+{% block content %}
+<div id="sidebar">
+    <h3>Категории</h3>
+    <ul>
+        <li {% if not category %}class="selected" {% endif %}>
+            <a href="{% url "store:service_list" %}">All</a>
+        </li>
+        {% for c in categories %}
+            <li {% if category.slug == c.slug %}class="selected"
+            {% endif %}>
+             <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div id="main" class="service-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Услуги
+        {% endif %}</h1>
+    {% for service in services %}
+    <div class="item">
+        <a href="{{ service.get_absolute_url }}">
+            <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+        </a>
+        <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+        <br>
+        {{ service.title }}
+        <br>
+        {{ service.price }}руб
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -7,7 +7,7 @@
 <div class="service-detail">
     <img src="{% if service.image %}{{ service.image.url }}{% else %}
  {% static  'img/no_image.png' %}{% endif %}">
-    <h1>{{ service.name }}</h1>
+    <h1>{{ service.title }}</h1>
     <h2>
         <a href="{{ service.category.get_absolute_url }}">
             {{ service.category }}
@@ -17,7 +17,7 @@
     <form action="{% url "cart:cart_add" service.id %}" method="post">
         {{ cart_service_form }}
         {% csrf_token %}
-        <input type="submit" value="Add to cart">
+        <input type="submit" value="Добавить в корзину">
     </form>
     {{ service.description|linebreaks }}
 </div>

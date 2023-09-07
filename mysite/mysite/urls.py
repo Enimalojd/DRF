@@ -13,6 +13,7 @@ router.register(r'services', ServiceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls', namespace='cart')),
     re_path('', include('social_django.urls', namespace='social')),
     path('store/', include('store.urls', namespace='store')),
     path('accounts/', include("django.contrib.auth.urls")),

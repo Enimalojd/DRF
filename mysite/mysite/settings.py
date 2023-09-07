@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'drf_social_oauth2',
 
     'store',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,5 @@ LOGIN_REDIRECT_URL = reverse_lazy("store:profile")
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CART_SESSION_ID = 'cart'

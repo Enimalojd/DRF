@@ -26,10 +26,7 @@
         <a href="{{ service.get_absolute_url }}">
             <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
         </a>
-        <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
-        <br>
-        {{ service.title }}
-        <br>
+        <a href="{{ service.get_absolute_url }}">{{ service.title }}</a>
         <br>
         {{ service.price }}р
     </div>
